@@ -7,4 +7,4 @@ Create an interactive web application that allows our user to parse and visualiz
 Data was sourced from Kaggle. 
 
 ## Tools Used: 
-Python and pandas in a jupyter notebook for data cleaning, Data was stored in a PostgreSQL data based A Flask RESTful API was built to interact with the database and the JavaScript and HTML code, HTML/CSS, JavaScript were used to create the web page and Plotly was used for visualization
+Python and pandas in a jupyter notebook for data cleaning. Data was stored in a PostgreSQL database. A Flask RESTful API was built to interact with the database and the JavaScript and HTML code, HTML/CSS, JavaScript were used to create the web page and Plotly was used for visualization.
