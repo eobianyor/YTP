@@ -51,7 +51,7 @@ session = Session(engine)
 connection = engine.connect()
 
 # youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v1", connection)
-youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v1", connection)
+youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v2", connection)
 
 ############# DATA CLEAN - FIX ISSUES AND RENAME COLUMNS ################
 # FIX THE 29 NON PROFITS ISSUE

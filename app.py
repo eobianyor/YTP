@@ -68,7 +68,7 @@ session = Session(engine)
 connection = engine.connect()
 
 # youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v1", connection)
-youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v1", connection)
+youtubeVids = pd.read_sql(f"SELECT * FROM youtube_table_v2", connection)
 
 ############# DATA CLEAN - FIX ISSUES AND RENAME COLUMNS ################
 # FIX THE 29 NON PROFITS ISSUE
@@ -86,6 +86,7 @@ session.close()
 #################################################
 @app.route("/")
 def home():
+    # print(index.html)
     return render_template("index.html")
 
 #################################################
@@ -97,6 +98,7 @@ def home():
 def dropdown1():
     country_df = youtubeVids['country'].value_counts()
     countryList = country_df.index.tolist()
+    print(countryList)
     return jsonify(countryList)
 
 ##################### ROUTE FOR DROP DOWN MENU 2 ########################
@@ -106,12 +108,14 @@ def dropdown2():
         ["29"], "Nonprofits & Activism")
     category_df = youtubeVids['categoryId'].value_counts()
     categoryList = category_df.index.tolist()
+    print(categoryList)
     return jsonify(categoryList)
 
 ##################### ROUTE FOR DROP DOWN MENU 3 ########################
 @app.route("/dropdown3")
 def dropdown3():
     metricList = ['views', 'likes', 'dislikes', 'comments']
+    print(metricList)
     return jsonify(metricList)
 
 #################################################
