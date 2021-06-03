@@ -46,15 +46,15 @@ quoted_conn_str = urllib.parse.quote_plus(conn_str)
 
 
 ######## ERROR HANDLING FOR CONNECTION TO A CLOUD DB FOR HOSTING ########
-# try:
-#     db_uri = os.environ['DATABASE_URL']
-# except KeyError:
-#     db_uri = f"postgresql://{connection_string2}"
+try:
+    db_uri = os.environ['DATABASE_URL']
+except KeyError:
+    db_uri = f"mssql+pyodbc:///?odbc_connect={quoted_conn_str}"
 
-# print(db_uri)
-# app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+print(db_uri)
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 ######################## CONNECT TO DATABASE ############################
 ##### Postgres #####
