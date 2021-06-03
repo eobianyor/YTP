@@ -14,12 +14,10 @@ import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
-import urllib
 
 from datetime import datetime
 
-from config import msql_serverName, msql_dbName
-# from config import dbuser, dbpassword, dbhost, dbport, dbname
+from config import dbuser, dbpassword, dbhost, dbport, dbname
 
 #################################################
 ####              FLASK SETUP                ####
@@ -30,22 +28,11 @@ app = Flask(__name__)
 ### #             DATABASE SETUP             ####
 #################################################
 
-################### POSTGRES CONNECTION STRINGS #########################
+######################## CONNECTION STRINGS #############################
 # connection_string1 = f'{pg_user}:{password}@localhost:5432/{db_name}'
-# connection_string2 = f'{dbuser}:{dbpassword}@database-1.cvmfiiilpm7y.us-east-1.rds.amazonaws.com:{dbport}/{dbname}'
+connection_string2 = f'{dbuser}:{dbpassword}@database-1.cvmfiiilpm7y.us-east-1.rds.amazonaws.com:{dbport}/{dbname}'
 # Heroku connection_string = postgres://merbhejlcbbizc:c47f98a8b46d8c32180a3d6c3420fc4b9d3711c5ba4afc316d94c551504fdcb2@ec2-23-22-191-232.compute-1.amazonaws.com:5432/d84r12ktb080ua
 
-##################### MSSQL CONNECTION STRINGS ##########################
-conn_str = (
-    r'Driver=ODBC Driver 17 for SQL Server;'
-    rf'Server={msql_serverName};'
-    rf'Database={msql_dbName};'
-    r'Trusted_Connection=yes;'
-)
-quoted_conn_str = urllib.parse.quote_plus(conn_str)
-
-
-######## ERROR HANDLING FOR CONNECTION TO A CLOUD DB FOR HOSTING ########
 # try:
 #     db_uri = os.environ['DATABASE_URL']
 # except KeyError:
@@ -57,11 +44,7 @@ quoted_conn_str = urllib.parse.quote_plus(conn_str)
 # db = SQLAlchemy(app)
 
 ######################## CONNECT TO DATABASE ############################
-##### Postgres #####
-# engine = create_engine(f'postgresql://{connection_string2}')
-
-##### Jsonify the data #####
-engine = create_engine(f'mssql+pyodbc:///?odbc_connect={quoted_conn_str}')
+engine = create_engine(f'postgresql://{connection_string2}')
 
 ######################### CONNECT TO SESSION ############################
 session = Session(engine)
